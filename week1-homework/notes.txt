@@ -2,6 +2,7 @@
 docker run -it \
     --rm \
     --name elasticsearch \
+    -m 4GB \
     -p 9200:9200 \
     -p 9300:9300 \
     -e "discovery.type=single-node" \
@@ -27,3 +28,11 @@ docker run -it \
     -p 11434:11434 \
     --name ollama \
     ollama/ollama
+
+# clearing up caches in linux;
+## Clear PageCache only
+    sudo sh -c 'echo 1 > /proc/sys/vm/drop_caches'
+## Clear dentries and inodes
+    sudo sh -c 'echo 2 > /proc/sys/vm/drop_caches'
+## Clear PageCache, dentries, and inodes
+    sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
